@@ -1,1 +1,11 @@
-<router-outlet />
+<nav class="navbar">
+  <div class="navbar-container">
+    <a class="navbar-brand" href="#">🌍 Location Manager</a>
+    <div class="navbar-buttons">
+      <button (click)="navigateTo('/country')" [class.active-button]="isActive('/country')">Countries</button>
+      <button (click)="navigateTo('/state')" [class.active-button]="isActive('/state')">States</button>
+      <button (click)="navigateTo('/city')" [class.active-button]="isActive('/city')">Cities</button>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

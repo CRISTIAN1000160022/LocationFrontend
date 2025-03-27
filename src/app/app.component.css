@@ -1,0 +1,82 @@
+/* Estilo general del navbar */
+.navbar {
+  background: linear-gradient(90deg, #4caf50, #2e7d32); /* Degradado verde */
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 10px; /* Bordes redondeados */
+  margin-bottom: 20px; /* Separación del contenido principal */
+}
+
+/* Contenedor del contenido del navbar */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Marca del navbar */
+.navbar-brand {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1); /* Efecto de zoom */
+}
+
+/* Contenedor de botones */
+.navbar-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Estilo de los botones */
+.navbar-buttons button {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 25px; /* Bordes más redondeados */
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transición suave */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Hover en los botones */
+.navbar-buttons button:hover {
+  background: white;
+  color: #4caf50;
+  border-color: #4caf50;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Botón activo */
+.active-button {
+  background: white;
+  color: #4caf50;
+  border-color: #4caf50;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  font-weight: bold;
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Transición para el botón activo */
+.active-button,
+.navbar-buttons button:hover {
+  transition: all 0.3s ease;
+}

@@ -4,6 +4,7 @@ import { StateService } from '../../../../services/state.service';
 
 @Component({
   selector: 'app-add-city',
+  standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './add-city.component.html',
   styleUrl: './add-city.component.css',
