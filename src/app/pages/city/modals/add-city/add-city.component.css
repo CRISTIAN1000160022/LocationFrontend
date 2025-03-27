@@ -1,0 +1,143 @@
+/* Fondo semitransparente detrás del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+/* Contenedor del modal */
+.modal-container {
+  background: white;
+  border-radius: 10px;
+  padding: 0; /* Eliminamos el padding general */
+  width: 500px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+  font-family: Arial, sans-serif;
+  animation: fadeIn 0.3s ease-in-out; /* Animación de entrada */
+  overflow: hidden; /* Asegura que los bordes redondeados se respeten */
+}
+
+/* Encabezado del modal */
+.modal-header {
+  background: linear-gradient(90deg, #4caf50, #2e7d32); /* Degradado verde */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra en el texto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 2px solid #e0e0e0; /* Línea divisoria */
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Cuerpo del modal */
+.form-section {
+  padding: 20px;
+  background: #f9f9f9; /* Fondo claro para diferenciar del encabezado */
+}
+
+table {
+  width: 100%;
+  border-spacing: 10px;
+}
+
+td {
+  vertical-align: top;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1em;
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Sombra verde */
+  outline: none;
+}
+
+select {
+  appearance: none; /* Elimina el estilo predeterminado del navegador */
+  background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%234CAF50%22 d%3D%22M2 0L0 2h4z%22/%3E%3C/svg%3E') no-repeat right 10px center;
+  background-size: 10px 10px;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+/* Pie del modal */
+.modal-footer {
+  padding: 15px 20px;
+  background: #f1f1f1; /* Fondo claro para diferenciar del cuerpo */
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 2px solid #e0e0e0; /* Línea divisoria */
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s ease; /* Transición suave para hover */
+}
+
+button[type='button'] {
+  background: #f44336;
+  color: white;
+}
+
+button[type='button']:hover {
+  background: #d32f2f; /* Color más oscuro al pasar el mouse */
+}
+
+button[type='submit'] {
+  background: #4caf50;
+  color: white;
+}
+
+button[type='submit']:hover {
+  background: #388e3c; /* Color más oscuro al pasar el mouse */
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

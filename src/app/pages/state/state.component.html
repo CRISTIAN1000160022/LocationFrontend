@@ -1,0 +1,84 @@
+<div class="state-container">
+  <div class="header-container">
+    <h2>States</h2>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="State Name"
+        [value]="searchQuery"
+        (input)="onSearch($event)"
+      />
+      <i class="pi pi-search search-icon"></i>
+      &nbsp;
+      <button class="add-state-btn" (click)="newState()">ADD STATE</button>
+    </div>
+  </div>
+  @if (filteredStates.length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortTable('StateID')">State ID</th>
+        <th (click)="sortTable('Name')">Name</th>
+        <th (click)="sortTable('CountryName')">Country</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (state of paginatedStates; track state.StateID) {
+      <tr>
+        <td>{{ state.StateID }}</td>
+        <td>{{ state.Name }}</td>
+        <td>{{ state.CountryName }}</td>
+        <td>
+          <button class="update-state-btn" (click)="updateState(state)">
+            UPDATE
+          </button>
+          &nbsp;
+          <button class="delete-state-btn" (click)="deleteState(state.StateID)">
+            DELETE
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <div class="pagination">
+    <div class="rows-per-page">
+      Rows per page:
+      <select (change)="onItemsPerPageChange($event)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <div class="page-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">❮</button>
+      <span
+        >{{ (currentPage - 1) * itemsPerPage + 1 }} -
+        {{ getMin(currentPage * itemsPerPage, filteredStates.length) }} of
+        {{ filteredStates.length }}</span
+      >
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        ❯
+      </button>
+    </div>
+  </div>
+  } @else {
+  <p class="error-message">No states available</p>
+  }
+</div>
+@if(isModalOpen) {
+<app-add-state
+  [isModalOpen]="isModalOpen"
+  (stateAdded)="onStateAdded($event)"
+  (modalClosed)="closeModal()"
+></app-add-state>
+} @if(isModalUpdateOpen) {
+<app-update-state
+  [isModalUpdateOpen]="isModalUpdateOpen"
+  [selectedState]="selectedPrediction"
+  (stateUpdated)="onStateUpdated($event)"
+  (modalClosedUpdated)="closeModalUpdate()"
+></app-update-state>
+}

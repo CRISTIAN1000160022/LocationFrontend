@@ -1,0 +1,29 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>🌍 New State</h2>
+    </div>
+    <div class="form-section">
+      <table>
+        <tr>
+          <td><label for="name">Name*</label></td>
+          <td>
+            <input id="name" name="Name" type="text" required (input)="onFieldChange($event)" />
+          </td>
+          <td><label for="countryID">Country*</label></td>
+          <td>
+            <select id="countryID" name="CountryID" required [(ngModel)]="state.CountryID"  (change)="onFieldChange($event)">
+              @for (country of countries; track country.CountryID) {
+                <option [value]="country.CountryID">{{ country.Name }}</option>
+              }
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)="closeModal()">Close</button>
+      <button type="submit" (click)="onSubmit()">Save</button>
+    </div>
+  </div>
+</div>

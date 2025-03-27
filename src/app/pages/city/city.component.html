@@ -1,0 +1,85 @@
+<div class="city-container">
+  <div class="header-container">
+    <h2>Cities</h2>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="City Name"
+        [value]="searchQuery"
+        (input)="onSearch($event)"
+      />
+      <i class="pi pi-search search-icon"></i>
+      &nbsp;
+      <button class="add-city-btn" (click)="newCity()">
+        ADD CITY
+      </button>
+    </div>
+  </div>
+  @if (filteredCities.length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortTable('CityID')">City ID</th>
+        <th (click)="sortTable('Name')">Name</th>
+        <th (click)="sortTable('Code')">Code</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (city of paginatedCountries; track city.CityID) {
+      <tr>
+        <td>{{ city.CityID }}</td>
+        <td>{{ city.Name }}</td>
+        <td>{{ city.StateName }}</td>
+        <td>
+          <button class="update-city-btn" (click)="updateCity(city)">
+            UPDATE
+          </button> &nbsp;
+          <button class="delete-city-btn" (click)="deleteCity(city.CityID)">
+            DELETE
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <div class="pagination">
+    <div class="rows-per-page">
+      Rows per page:
+      <select (change)="onItemsPerPageChange($event)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <div class="page-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">❮</button>
+      <span
+        >{{ (currentPage - 1) * itemsPerPage + 1 }} -
+        {{ getMin(currentPage * itemsPerPage, filteredCities.length) }} of
+        {{ filteredCities.length }}</span
+      >
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        ❯
+      </button>
+    </div>
+  </div>
+  } @else {
+  <p class="error-message">No cities available</p>
+  }
+</div>
+@if(isModalOpen) {
+  <app-add-city
+    [isModalOpen]="isModalOpen"
+    (cityAdded)="onCityAdded($event)"
+    (modalClosed)="closeModal()"
+  ></app-add-city>
+  } @if(isModalUpdateOpen) {
+  <app-update-city
+    [isModalUpdateOpen]="isModalUpdateOpen"
+    [selectedCity]="selectedPrediction"
+    (cityUpdated)="onCityUpdated($event)"
+    (modalClosedUpdated)="closeModalUpdate()"
+  ></app-update-city>
+  }

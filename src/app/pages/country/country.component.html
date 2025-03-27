@@ -1,0 +1,89 @@
+<div class="country-container">
+  <div class="header-container">
+    <h2>Countries</h2>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Country Name"
+        [value]="searchQuery"
+        (input)="onSearch($event)"
+      />
+      <i class="pi pi-search search-icon"></i>
+      &nbsp;
+      <button class="add-country-btn" (click)="newCountry()">
+        ADD COUNTRY
+      </button>
+    </div>
+  </div>
+  @if (filteredCountries.length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortTable('CountryID')">Country ID</th>
+        <th (click)="sortTable('Name')">Name</th>
+        <th (click)="sortTable('Code')">Code</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (country of paginatedCountries; track country.CountryID) {
+      <tr>
+        <td>{{ country.CountryID }}</td>
+        <td>{{ country.Name }}</td>
+        <td>{{ country.Code }}</td>
+        <td>
+          <button class="update-country-btn" (click)="updateCountry(country)">
+            UPDATE
+          </button>
+          &nbsp;
+          <button
+            class="delete-country-btn"
+            (click)="deleteCountry(country.CountryID)"
+          >
+            DELETE
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <div class="pagination">
+    <div class="rows-per-page">
+      Rows per page:
+      <select (change)="onItemsPerPageChange($event)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <div class="page-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">❮</button>
+      <span
+        >{{ (currentPage - 1) * itemsPerPage + 1 }} -
+        {{ getMin(currentPage * itemsPerPage, filteredCountries.length) }} of
+        {{ filteredCountries.length }}</span
+      >
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        ❯
+      </button>
+    </div>
+  </div>
+  } @else {
+  <p class="error-message">No countries available</p>
+  }
+</div>
+@if(isModalOpen) {
+<app-add-country
+  [isModalOpen]="isModalOpen"
+  (countryAdded)="onCountryAdded($event)"
+  (modalClosed)="closeModal()"
+></app-add-country>
+} @if(isModalUpdateOpen) {
+<app-update-country
+  [isModalUpdateOpen]="isModalUpdateOpen"
+  [selectedCountry]="selectedPrediction"
+  (countryUpdated)="onCountryUpdated($event)"
+  (modalClosedUpdated)="closeModalUpdate()"
+></app-update-country>
+}

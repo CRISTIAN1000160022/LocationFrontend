@@ -1,0 +1,25 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>🌍 Update Country</h2>
+    </div>
+    <div class="form-section">
+      <table>
+        <tr>
+          <td><label for="name">Name*</label></td>
+          <td>
+            <input id="name" name="Name" type="text" required (input)="onFieldChange($event)" value="{{country.Name}}" />
+          </td>
+          <td><label for="code">Code*</label></td>
+          <td>
+            <input id="code" name="Code" type="text" required (input)="onFieldChange($event)" value="{{country.Code}}" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)="closeModal()">Close</button>
+      <button type="submit" (click)="onSubmit()">Save</button>
+    </div>
+  </div>
+</div>
